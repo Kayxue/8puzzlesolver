@@ -1,4 +1,3 @@
-use std::time::Instant;
 use std::{
     collections::{BinaryHeap, HashSet, VecDeque},
     io::stdin,
@@ -152,7 +151,6 @@ fn main() {
         println!("It is the goal state.");
         return;
     }
-    let now = Instant::now();
     let mut pqueue = BinaryHeap::new();
     let mut visited = HashSet::new();
     let my_node_i = DataNode::new(&state, 0, heuristic(&state) as i32);
@@ -184,7 +182,6 @@ fn main() {
             visited.insert(Box::leak(Box::new(n_state)));
         }
     }
-    let elapsed = now.elapsed();
     if let Some(node) = final_node {
         let mut steps: VecDeque<&DataNode> = VecDeque::new();
         let mut now_node = &node;
@@ -204,7 +201,6 @@ fn main() {
                 }
             );
         }
-        println!("Elapsed: {:.2?}", elapsed);
     } else {
         println!("No solution!!")
     }
