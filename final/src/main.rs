@@ -155,7 +155,7 @@ fn main() {
     let mut visited = HashSet::new();
     let my_node_i = DataNode::new(&state, 0, heuristic(&state) as i32);
     pqueue.push(my_node_i);
-    visited.insert(Box::leak(Box::new(state.clone())));
+    visited.insert(Box::new(state.clone()));
 
     while !pqueue.is_empty() {
         let my_node = pqueue.pop().unwrap();
@@ -179,7 +179,7 @@ fn main() {
                 parent: Some(Box::leak(Box::new(my_node.clone()))),
             };
             pqueue.push(n_node);
-            visited.insert(Box::leak(Box::new(n_state)));
+            visited.insert(Box::new(n_state));
         }
     }
     if let Some(node) = final_node {
